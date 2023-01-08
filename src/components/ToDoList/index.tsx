@@ -35,8 +35,6 @@ export function ToDoList(props: Props) {
   function handleSelect() {
     setSelection(!isSelected);
     const result = changeTodoItem(id) || [];
-    console.log("[id] > ", id);
-    console.log("[result] > ", result);
     setTasks(result);
   }
 
@@ -49,17 +47,20 @@ export function ToDoList(props: Props) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={
-          isSelected ? [styles.checkbox, styles.selected] : styles.checkbox
-        }
-        onPress={handleSelect}
-      >
-        {isSelected && <Image source={require("../../../assets/check.png")} />}
+      <TouchableOpacity style={styles.touchableContainer} onPress={handleSelect}>
+        <TouchableOpacity
+          style={
+            isSelected ? [styles.checkbox, styles.selected] : styles.checkbox
+          }
+        >
+          {isSelected && (
+            <Image source={require("../../../assets/check.png")} />
+          )}
+        </TouchableOpacity>
+        <Text style={isSelected ? [styles.text, styles.done] : styles.text}>
+          {task}
+        </Text>
       </TouchableOpacity>
-      <Text style={isSelected ? [styles.text, styles.done] : styles.text}>
-        {task}
-      </Text>
       <TouchableOpacity onPress={handleRemove}>
         <Image source={require("../../../assets/trash.png")} />
       </TouchableOpacity>
