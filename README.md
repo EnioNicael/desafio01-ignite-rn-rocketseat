@@ -1,8 +1,13 @@
 # Desafio 01 - Todo list
 
-## Dicas
+Projeto do modulo de fundamentos do React Native do curso de Rocketseat.
 
-- para rodar o projeto usar o comando:
+## Como rodar o projeto
+
+- Clonar o projeto.
+- Entrar na pasta `todolist`.
+- Instalar dependencias `npm install`.
+- Rodar o projeto:
 ```
 npx expo start
 ```
