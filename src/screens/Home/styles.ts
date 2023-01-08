@@ -40,5 +40,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  xablau: {color: 'white'},
+  content: {
+    marginTop: 55,
+  },
 });

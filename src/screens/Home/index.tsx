@@ -9,24 +9,28 @@ import {
 } from "react-native";
 import uuid from "react-native-uuid";
 import { EmptyList } from "../../components/EmptyList";
+import { ToDoList } from "../../components/ToDoList";
+import { Information } from "../../components/Information";
 import { styles } from "./styles";
 
 interface Itask {
   id: string;
   task: string;
+  isDone: boolean;
 }
 
 export function Home() {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState<Itask[] | []>([]);
+  const [tasks, setTasks] = useState<Itask[]>([]);
 
-  const handlePressButton = () => {
+  function handlePressButton() {
     const id = uuid.v4().toString();
     setTasks([
       ...tasks,
       {
         id,
         task,
+        isDone: false,
       },
     ]);
     setTask("");
@@ -50,12 +54,17 @@ export function Home() {
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        data={tasks}
-        keyExtractor={(item: Itask) => item.id}
-        renderItem={({ item }) => <Text style={styles.xablau}>{item.task}</Text>}
-        ListEmptyComponent={<EmptyList />}
-      />
+      <View style={styles.content}>
+        <Information tasks={tasks} />
+        <FlatList
+          data={tasks}
+          keyExtractor={(item: Itask) => item.id}
+          renderItem={({ item }) => (
+            <ToDoList item={item} setTasks={setTasks} tasks={tasks} />
+          )}
+          ListEmptyComponent={<EmptyList />}
+        />
+      </View>
     </View>
   );
 }
